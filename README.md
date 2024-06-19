@@ -1,5 +1,5 @@
 
-> Open this page at [https://avans-stationx.github.io/space-stationx/](https://nielsvandepas.github.io/space-stationx/)
+> Open this page at [https://avans-stationx.github.io/space-stationx/](https://avans-stationx.github.io/space-stationx/)
 
 ## Use as Extension
 
