@@ -145,8 +145,8 @@ namespace SpaceStationX {
         if (solved) {
             radio.sendNumber(code)
             bricked = true
-            explode()
             music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.InBackground)
+            explode()
             
         } else {
             music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wawawawaa), music.PlaybackMode.InBackground)
