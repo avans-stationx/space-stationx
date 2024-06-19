@@ -1,5 +1,5 @@
 {
-    "name": "space-stationx-sound",
+    "name": "SpaceStationX Sound",
     "dependencies": {
         "core": "*",
         "radio": "*",
