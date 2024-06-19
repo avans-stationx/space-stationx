@@ -26,6 +26,16 @@ namespace SpaceStationX {
         solved = true
     }
 
+    //% block="solve light puzzle"
+    //% group="Solvers"
+    export function solveLightPuzzle() {
+        if (work < getRequiredWork(Puzzles.Light)) {
+            return
+        }
+
+        solved = true
+    }
+
     //% block="display code digit for puzzle $puzzle"
     //% group="Secrets"
     export function displayCodeDigit(puzzle: Puzzles) {
