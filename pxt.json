@@ -1,5 +1,5 @@
 {
-    "name": "SpaceStationX",
+    "name": "space-stationx",
     "description": "",
     "dependencies": {
         "core": "*",
