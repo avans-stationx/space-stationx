@@ -106,7 +106,7 @@ namespace SpaceStationX {
             case Puzzles.Sound:
                 return 250
             case Puzzles.Light:
-                return 250
+                return 1600
         }
     }
 
