@@ -36,6 +36,12 @@ namespace SpaceStationX {
         solved = true
     }
 
+    //% block="solve gyroscope puzzle"
+    //% group="Solvers"
+    export function solveGyroscopePuzzle() {
+        solved = true
+    }
+
     //% block="display code digit for puzzle $puzzle"
     //% group="Secrets"
     export function displayCodeDigit(puzzle: Puzzles) {
@@ -161,5 +167,75 @@ namespace SpaceStationX {
         } else {
             music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Wawawawaa), music.PlaybackMode.InBackground)
         }
+    }
+
+    let heading = 0
+    let securityStatusReceivedCallback: ((isSecure: boolean) => void) | undefined
+    let calibrationDirectionCallback: ((direction: string) => void) | undefined
+    let calibrationReadyCallback: ((digit: number, secretCode: number) => void) | undefined
+
+    //% block="start steering wheel communication"
+    //% subcategory="Steering wheel"
+    export function startSteeringWheelCommunication() {
+        serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+            const [command, firstParameter, secondParameter] = serial.readLine().split(",")
+            switch (command) {
+                case "caLeft":
+                    if (calibrationDirectionCallback) {
+                        calibrationDirectionCallback("left")
+                    }
+                    break
+                case "caRight":
+                    if (calibrationDirectionCallback) {
+                        calibrationDirectionCallback("right")
+                    }
+                    break
+                case "caUp":
+                    if (calibrationDirectionCallback) {
+                        calibrationDirectionCallback("up")
+                    }
+                    break
+                case "caDown":
+                    if (calibrationDirectionCallback) {
+                        calibrationDirectionCallback("down")
+                    }
+                    break
+                case "solved":
+                    if (calibrationReadyCallback) {
+                        calibrationReadyCallback(parseInt(firstParameter), parseInt(secondParameter))
+                    }
+                default:
+                    break
+            }
+        })
+    }
+
+    //% block="calibrate steering wheel|pitch $pitch °|roll $roll °"
+    //% subcategory="Steering wheel"
+    //% pitch.min=0 pitch.max=360
+    //% roll.min=0 roll.max=360
+    export function calibrateSteeringWheel(pitch: number, roll: number) {
+        serial.writeNumbers([roll, pitch, heading])
+    }
+
+    //% block="set heading $newHeading"
+    //% subcategory="Steering wheel"
+    //% newHeading.min=0 newHeading.max=9
+    export function setHeading(newHeading: number) {
+        heading = newHeading
+    }
+
+    //% block="on calibration $direction"
+    //% draggableParameters="reporter"
+    //% subcategory="Steering wheel"
+    export function onCalibrationDirection(callback: (direction: string) => void) {
+        calibrationDirectionCallback = callback
+    }
+
+    //% block="on calibration ready $digit $secretCode"
+    //% draggableParameters="reporter"
+    //% subcategory="Steering wheel"
+    export function onCalibrationReady(callback: (digit: number, secretCode: number) => void) {
+        calibrationReadyCallback = callback
     }
 }
