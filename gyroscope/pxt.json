@@ -1,10 +1,10 @@
 {
-    "name": "space-stationx-gyroscope",
+    "name": "SpaceStationX Gyroscope",
     "dependencies": {
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "space-stationx": "github:avans-stationx/space-stationx"
+        "space-stationx": "github:avans-stationx/space-stationx#a708d0577df501f5892a1aa914113f94c17f7c5b"
     },
     "files": [
         "main.blocks",
