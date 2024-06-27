@@ -4,7 +4,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "space-stationx": "github:avans-stationx/space-stationx"
+        "space-stationx": "github:avans-stationx/space-stationx#921e869b258fd3b48044d269d5dd176a6d5537b8"
     },
     "files": [
         "main.blocks",
