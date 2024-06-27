@@ -155,9 +155,6 @@ namespace SpaceStationX {
     //% block="send secret code $code"
     //% group="Secrets"
     export function sendSecretCode(code: number) {
-        if (bricked) {
-            return
-        }
         if (solved) {
             radio.sendNumber(code)
             bricked = true
